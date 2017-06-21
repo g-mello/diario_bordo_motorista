@@ -24,7 +24,7 @@
 
       <div class="item item-button-right">
        Carga 
-        <button class="button button-positive" ng-click="openModalRefeicao()" >
+        <button class="button button-positive" ng-click="openModalCD()" >
                 <i class="icon ion-android-clipboard"></i>
         </button>
       </div>
@@ -43,6 +43,7 @@
         </button>
       </div>
 
+
 <script id="jornada.html" type="text/ng-template">
 
 <ion-header-bar   class="bar-dark" style="background-color: rgb(67, 61, 61)" ; >
@@ -52,7 +53,7 @@
 </ion-header-bar>
 
   <ion-content padding="true" scroll="false" class="has-header" style="background-color: rgb(45, 40, 45)";>
-    <button id="jornada-button26" class="button button-balanced button-block">Iniciar Jornada</button>
+    <button id="jornada-button26" class="button button-balanced button-block" ng-click="insereOcorrenciaLocal('Inicio da Jornada')" >Iniciar Jornada</button>
      </br>
      </br>
     <h1 align="center" id="jornada-heading24" style="color: rgb(255, 247, 247); font-weight: lighter;">Domingo</h1>
@@ -74,7 +75,7 @@
 </ion-header-bar>
 
 <ion-content padding="true" scroll="false" class="has-header"  style="background-color: rgb(45, 40, 45)" ;>
-    <button id="direODiRia-button10" class="button button-balanced button-block">Iniciar Direção</button>
+    <button id="direODiRia-button10" class="button button-balanced button-block"  ng-click="insereOcorrenciaLocal('Inicio da Direção Diária')" >Iniciar Direção</button>
     <button id="descanso-button12" class="button button-balanced button-block">Fazer Descanso</button>
     <h3 align="center" id="direODiRia-heading1" style="color: rgb(255, 255, 255);">Tempo Total de Direção</h3>
     <h1 id="direODiRia-heading7" style="color: rgb(255, 255, 255); text-align: center;">5 : 10 : 45</h1>
@@ -98,7 +99,7 @@
 </ion-header-bar>
 
 <ion-content padding="true" scroll="false" class="has-header"   style="background-color: rgb(45, 40, 45)"; >
-    <button id="refeiO-button8" class="button button-balanced button-block">Iniciar Refeição</button>
+    <button id="refeiO-button8" class="button button-balanced button-block"  ng-click="insereOcorrenciaLocal('Inicio da Direção Diária')" >Iniciar Refeição</button>
     <h3 align="center" id="refeiO-heading8" style="color: rgb(255, 255, 255);">Tempo de Refeição</h3>
     <h2 id="refeiO-heading9" style="color: rgb(255, 255, 255); text-align: center;">00 : 00 : 00</h2>
     <button id="refeiO-button9" class="button button-assertive button-block" ng-click="closeModalRefeicao()">Finalizar Refeição</button>
@@ -116,7 +117,7 @@
 
 <ion-content padding="true" scroll="false" class="has-header" style="background-color: rgb(45, 40, 45)"; >
 
-    <button id="carga-button22" class="button button-balanced button-block">Iniciar</button>
+    <button id="carga-button22" class="button button-balanced button-block" ng-click="insereOcorrenciaLocal('Inicio da Direção Diária')" >Iniciar</button>
     <form id="carga-form3" class="list">
 
       <h4 id="carga-heading18" style="color: rgb(255, 255, 255);">Nome da Empresa</h4>
@@ -163,7 +164,7 @@
 
 <ion-content padding="true" scroll="false" class="has-header" style="background-color: rgb(45, 40, 45)"; >
 
-    <button id="manutenO-button14" class="button button-balanced button-block">Iniciar</button>
+    <button id="manutenO-button14" class="button button-balanced button-block"  ng-click="insereOcorrenciaLocal('Inicio da Manutenção')" >Iniciar</button>
     </br>
 
     <ion-list>
@@ -189,7 +190,7 @@
 
 <ion-content padding="true" scroll="false" class="has-header" style="background-color: rgb(45, 40, 45)"; >
 
-<button id="pernoite-button20" class="button button-balanced button-block">Iniciar Pernoite</button>
+<button id="pernoite-button20" class="button button-balanced button-block"   ng-click="insereOcorrenciaLocal('Inicio da Manutenção')" >Iniciar Pernoite</button>
 </br>
   <h1 align="center" id="jornada-heading24" style="color: rgb(255, 247, 247); font-weight: lighter;">Sábado</h1>
   <h1 align="center" id="jornada-heading26" style="color: rgb(255, 247, 247); font-weight: lighter;">10 / 8 / 2017</h1>

@@ -13,6 +13,49 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $ionicModal) {
 
+$scope.today = new Date();
+
+
+
+// Local Storage ==============================
+
+$scope.getOcorrenciasLocal = function() {
+     // retorna conteúdo da chave produtos
+     return localStorage.ocorrencias;
+} 
+
+
+$scope.insereOcorrenciaLocal = function(desc) { 
+
+      var date = new Date();
+      var descricao = desc; 
+      var localizacao ="Hello WOrld";
+
+      var nova_ocorrencia = { date, descricao, localizacao };
+
+      // guarda os produtos
+      var ocorrencias = [ ];
+
+      // verifica se a chave existe
+      if (typeof localStorage.ocorrencias != 'undefined'){
+          // recupera conteúdo da chave e transforma em JSON
+          ocorrencias = JSON.parse(localStorage.ocorrencias);
+      }
+      // adiciona produto novo no vetor
+     ocorrencias.push(nova_ocorrencia);
+     // converte JSON para String
+      var paraString = JSON.stringify(ocorrencias);
+      // armazena conteúdo do vetor em localStorate
+      localStorage.setItem('ocorrencias', paraString);
+      
+      alert("Inserção Local com sucesso");
+
+      return novo;
+}
+
+
+//================================================
+
 // MODALS =========================================
 // Modal Jornada
 $ionicModal.fromTemplateUrl('jornada.html', {
@@ -28,8 +71,9 @@ $ionicModal.fromTemplateUrl('jornada.html', {
 
 
   $scope.closeModalJornada = function() {
-            $scope.modal_jornada.hide();
-              };
+       $scope.modal_jornada.hide();
+       $scope.insereOcorrenciaLocal('Fim da Jornada');
+  };
 
 
 //===================================
@@ -49,8 +93,9 @@ $ionicModal.fromTemplateUrl('direcao_diaria.html', {
 
 
   $scope.closeModalDD= function() {
-            $scope.modal_dd.hide();
-              };
+       $scope.modal_dd.hide();
+       $scope.insereOcorrenciaLocal('Fim da Direção Diária');
+  };
 
 
 //===================================
@@ -70,8 +115,9 @@ $ionicModal.fromTemplateUrl('refeicao.html', {
 
 
   $scope.closeModalRefeicao = function() {
-            $scope.modal_refeicao.hide();
-              };
+       $scope.modal_refeicao.hide();
+       $scope.insereOcorrenciaLocal('Fim da Direção Diária');
+  };
 
 
 //===================================
@@ -90,8 +136,9 @@ $ionicModal.fromTemplateUrl('carga_descarga.html', {
             };
 
   $scope.closeModalCD = function() {
-            $scope.modal_cd.hide();
-              };
+       $scope.modal_cd.hide();
+       $scope.insereOcorrenciaLocal('Fim da Carga e Descarga');
+   };
 
 //===============================
 
@@ -104,13 +151,14 @@ $ionicModal.fromTemplateUrl('manutencao.html', {
                 });
 
   $scope.openModalManutencao = function() {
-          $scope.modal_manutencao.show();
-            };
+       $scope.modal_manutencao.show();
+   };
 
 
   $scope.closeModalManutencao = function() {
-            $scope.modal_manutencao.hide();
-              };
+       $scope.modal_manutencao.hide();
+       $scope.insereOcorrenciaLocal('Fim da Manutenção');
+  };
 
 //===============================
 
@@ -129,8 +177,9 @@ $ionicModal.fromTemplateUrl('pernoite.html', {
 
 
   $scope.closeModalPernoite= function() {
-            $scope.modal_pernoite.hide();
-              };
+       $scope.modal_pernoite.hide();
+       $scope.insereOcorrenciaLocal('Fim do Pernoite');
+  };
 
 //===============================
 
