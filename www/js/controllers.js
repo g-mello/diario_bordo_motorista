@@ -8,12 +8,34 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('ocorrNciasCtrl', ['$scope', '$stateParams', '$ionicModal', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('ocorrNciasCtrl', ['$scope', '$stateParams', '$ionicModal','moment', '$interval', '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal) {
+function ($scope, $stateParams, $ionicModal, moment, $interval, $timeout ) {
 
-$scope.today = new Date();
+moment.updateLocale('pt-br');
+
+days = ['Domingo', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábabo', 'Domingo'];
+
+$scope.ano = moment().year();
+$scope.mes = moment().month();
+$scope.dia = moment().date();
+$scope.dia_semana = days[moment().weekday()-1];
+$scope.hora = 3 + moment().hours();
+$scope.minutos = moment().minutes();
+$scope.segundos = moment().seconds();
+
+// Relogio Jornada
+var tick_relogio = function(){
+  $scope.relogio = moment().format("HH : mm : ss"); 
+}
+
+$interval(tick_relogio, 1000);
+
+
+// Relogio Refeição
+$scope.ref_inicio = moment().format("ddd, D/MMM/YYYY");
+
 
 
 
@@ -27,11 +49,12 @@ $scope.getOcorrenciasLocal = function() {
 
 $scope.insereOcorrenciaLocal = function(desc) { 
 
-      var date = new Date();
+      var horario =  moment().format("h:mm:ss a");
+      var data = moment().format("ddd, D/MMM/YYYY"); 
       var descricao = desc; 
       var localizacao ="Hello WOrld";
 
-      var nova_ocorrencia = { date, descricao, localizacao };
+      var nova_ocorrencia = { data, horario, descricao, localizacao };
 
       // guarda os produtos
       var ocorrencias = [ ];

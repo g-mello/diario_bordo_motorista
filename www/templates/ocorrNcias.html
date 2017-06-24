@@ -42,6 +42,14 @@
                 <i class="icon ion-home"></i>
         </button>
       </div>
+      {{dia}}
+      {{hora}}
+      {{minutos}}
+      {{segundos}}
+      {{ano}}
+      {{mes}}
+      </br>
+      {{ref_inicio}}
 
 
 <script id="jornada.html" type="text/ng-template">
@@ -56,9 +64,9 @@
     <button id="jornada-button26" class="button button-balanced button-block" ng-click="insereOcorrenciaLocal('Inicio da Jornada')" >Iniciar Jornada</button>
      </br>
      </br>
-    <h1 align="center" id="jornada-heading24" style="color: rgb(255, 247, 247); font-weight: lighter;">Domingo</h1>
-    <h1 align="center" id="jornada-heading26" style="color: rgb(255, 247, 247); font-weight: lighter;">10 / 8 / 2017</h1>
-    <h2 align="center" id="jornada-heading25" style="color: rgb(255, 247, 247); font-weight: lighter;"> 16 : 45 : 15</h2>
+     <h1 align="center" id="jornada-heading24" style="color: rgb(255, 247, 247); font-weight: lighter;">{{dia_semana}}</h1>
+     <h1 align="center" id="jornada-heading26" style="color: rgb(255, 247, 247); font-weight: lighter;">{{dia}} / {{mes}} / {{ano}}</h1>
+     <h2 align="center" id="jornada-heading25" style="color: rgb(255, 247, 247); font-weight: lighter;"> {{relogio}}</h2>
      </br>
      </br>
     <button id="jornada-button27" class="button button-assertive button-block" ng-click="closeModalJornada()" >Finalizar Jornada</button>
@@ -76,15 +84,12 @@
 
 <ion-content padding="true" scroll="false" class="has-header"  style="background-color: rgb(45, 40, 45)" ;>
     <button id="direODiRia-button10" class="button button-balanced button-block"  ng-click="insereOcorrenciaLocal('Inicio da Direção Diária')" >Iniciar Direção</button>
-    <button id="descanso-button12" class="button button-balanced button-block">Fazer Descanso</button>
-    <h3 align="center" id="direODiRia-heading1" style="color: rgb(255, 255, 255);">Tempo Total de Direção</h3>
-    <h1 id="direODiRia-heading7" style="color: rgb(255, 255, 255); text-align: center;">5 : 10 : 45</h1>
-    </br>
+    <button id="descanso-button12" class="button button-balanced button-block"  ng-click="insereOcorrenciaLocal('Inicio do Descanso')" >Fazer Descanso</button>
     <h3 align="center" id="direODiRia-heading6" style="color: rgb(255, 248, 248);">Tempo de Direção</h3>
     <h1 id="direODiRia-heading2" style="color: rgb(255, 255, 255); text-align: center;">2 : 15 : 10</h1>
     <h3 align="center" id="descanso-heading14" style="color: rgb(255, 255, 255);">Tempo de Descanso</h3>
     <h1 id="descanso-heading15" style="color: rgb(255, 253, 253); text-align: center;">00 : 00 : 00</h1>
-    <button id="descanso-button13" class="button button-assertive button-block">Finalizar Descanso</button>
+    <button id="descanso-button13" class="button button-assertive button-block"   ng-click="insereOcorrenciaLocal('Fim do Descanso')" >Finalizar Descanso</button>
     <button id="direODiRia-button7" class="button button-assertive button-block" ng-click="closeModalDD()">Finalizar Direção</button>
 </ion-content>
 
@@ -100,8 +105,13 @@
 
 <ion-content padding="true" scroll="false" class="has-header"   style="background-color: rgb(45, 40, 45)"; >
     <button id="refeiO-button8" class="button button-balanced button-block"  ng-click="insereOcorrenciaLocal('Inicio da Direção Diária')" >Iniciar Refeição</button>
-    <h3 align="center" id="refeiO-heading8" style="color: rgb(255, 255, 255);">Tempo de Refeição</h3>
-    <h2 id="refeiO-heading9" style="color: rgb(255, 255, 255); text-align: center;">00 : 00 : 00</h2>
+
+    <h3 align="center" id="refeiO-heading8" style="color: rgb(255, 255, 255);">Hora Local </h3>
+    <h2 id="refeiO-heading9" style="color: rgb(255, 255, 255); text-align: center;">{{relogio}}</h2>
+
+    </br>
+
+
     <button id="refeiO-button9" class="button button-assertive button-block" ng-click="closeModalRefeicao()">Finalizar Refeição</button>
 </ion-content>
 
@@ -117,17 +127,16 @@
 
 <ion-content padding="true" scroll="false" class="has-header" style="background-color: rgb(45, 40, 45)"; >
 
-    <button id="carga-button22" class="button button-balanced button-block" ng-click="insereOcorrenciaLocal('Inicio da Direção Diária')" >Iniciar</button>
-    <form id="carga-form3" class="list">
-
-      <h4 id="carga-heading20" style="color: rgb(255, 255, 255);">Modo</h4>
+      </br>
+      <h4 id="carga-heading20" style="color: rgb(255, 255, 255);">Selecione Qual Modo Iniciar</h4>
       <ion-list>
-        <ion-radio ng-model="choice" ng-value="carga">Carga</ion-radio>
-          <ion-radio ng-model="choice" ng-value="descarga">Descarga</ion-radio>
+        <ion-radio ng-model="choice"  ng-click="insereOcorrenciaLocal('Inicio da Carga')"  > Carga</ion-radio>
+          <ion-radio ng-model="choice" ng-click="insereOcorrenciaLocal('Inicio da Carga')">Descarga</ion-radio>
        </ion-list>
       </label>
 
-
+    <button id="carga-button22" class="button button-balanced button-block" ng-click="insereOcorrenciaLocal('Inicio da Direção Diária')" >Iniciar</button>
+    <form id="carga-form3" class="list">
       <button id="carga-button23" class="button button-assertive button-block" ng-click="closeModalCD()">Finalizar</button>
     </form>
 
@@ -146,16 +155,14 @@
 
 <ion-content padding="true" scroll="false" class="has-header" style="background-color: rgb(45, 40, 45)"; >
 
-    <button id="manutenO-button14" class="button button-balanced button-block"  ng-click="insereOcorrenciaLocal('Inicio da Manutenção')" >Iniciar</button>
     </br>
-
+    <h4 id="carga-heading20" style="color: rgb(255, 255, 255);">Selecione Qual Modo Iniciar</h4>
     <ion-list>
-        <ion-radio ng-model="choice" ng-value="Manutencao_Caminhao">Manutenção do Caminhão</ion-radio>
-        <ion-radio ng-model="choice" ng-value="Abastecimento">Abastecimento</ion-radio>
-        <ion-radio ng-model="choice" ng-value="Fiscalizacao">Fiscalização</ion-radio>
+        <ion-radio ng-model="choice" ng-value="Abastecimento"   ng-click="insereOcorrenciaLocal('Inicio Abastecimento')"  >Abastecimento</ion-radio>
+        <ion-radio ng-model="choice" ng-value="Fiscalizacao"  ng-click="insereOcorrenciaLocal('Inicio Fiscalizacao')"  >Fiscalização</ion-radio>
     </ion-list>
 
-    </br>
+    <button id="manutenO-button14" class="button button-balanced button-block"  ng-click="insereOcorrenciaLocal('Inicio da Manutenção')" >Iniciar</button>
     <button id="manutenO-button15" class="button button-assertive button-block" ng-click="closeModalManutencao()">Finalizar</button>
 </ion-content>
 
@@ -172,14 +179,14 @@
 
 <ion-content padding="true" scroll="false" class="has-header" style="background-color: rgb(45, 40, 45)"; >
 
-<button id="pernoite-button20" class="button button-balanced button-block"   ng-click="insereOcorrenciaLocal('Inicio da Manutenção')" >Iniciar Pernoite</button>
-</br>
-  <h1 align="center" id="jornada-heading24" style="color: rgb(255, 247, 247); font-weight: lighter;">Sábado</h1>
-  <h1 align="center" id="jornada-heading26" style="color: rgb(255, 247, 247); font-weight: lighter;">10 / 8 / 2017</h1>
-  <h2 align="center" id="jornada-heading25" style="color: rgb(255, 247, 247); font-weight: lighter;"> 02 : 45 : 15</h2>
-</br>
-<button id="pernoite-button21" class="button button-assertive button-block" ng-click="closeModalPernoite()">Finalizar Pernoite</button>
-</ion-content>
+    <button id="jornada-button26" class="button button-balanced button-block" ng-click="insereOcorrenciaLocal('Inicio do Pernoite')" >Iniciar Pernoite</button>
+     </br>
+     <h1 align="center" id="jornada-heading24" style="color: rgb(255, 247, 247); font-weight: lighter;">{{dia_semana}}</h1>
+     <h1 align="center" id="jornada-heading26" style="color: rgb(255, 247, 247); font-weight: lighter;">{{dia}} / {{mes}} / {{ano}}</h1>
+     <h2 align="center" id="jornada-heading25" style="color: rgb(255, 247, 247); font-weight: lighter;"> {{relogio}}</h2>
+     </br>
+    <button id="jornada-button27" class="button button-assertive button-block" ng-click="closeModalPernoite()" >Finalizar Pernoite </button>
+
 </script>
 
 

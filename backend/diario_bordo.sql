@@ -18,7 +18,8 @@ create table tb_ocorrencias(
     id_ocorrencia serial not null,
     id_motorista integer not null,
     descricao varchar(200),
-    horario timestamp,
+    data varchar(30),
+    horario varchar(30),
     localizacao varchar(30),
     fg_ativo integer,
 
