@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
   
-.controller('sincronizarDadosCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('sincronizarDadosCtrl', ['$scope', '$stateParams', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
@@ -8,10 +8,19 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('ocorrNciasCtrl', ['$scope', '$stateParams', '$ionicModal','moment', '$interval', '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('ocorrNciasCtrl', ['$scope', '$stateParams', '$ionicModal','moment', '$interval', '$timeout', '$geolocation', '$ionicPopup',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal, moment, $interval, $timeout ) {
+function ($scope, $stateParams, $ionicModal, moment, $interval, $timeout, $geolocation, $ionicPopup) {
+
+
+$geolocation.watchPosition({
+            timeout: 60000,
+            maximumAge: 250,
+            enableHighAccuracy: true
+});
+
+$scope.posicao= $geolocation.position;
 
 moment.updateLocale('pt-br');
 
@@ -25,6 +34,20 @@ $scope.hora = 3 + moment().hours();
 $scope.minutos = moment().minutes();
 $scope.segundos = moment().seconds();
 
+// Alerts
+var showAlert = function() {
+    var alertPopup = $ionicPopup.alert({
+        title: "Ocorrência",
+        template: "Ocorrência adicionada com sucesso",
+        okText: "Fechar",
+        okType: "button-balanced"
+    });
+    
+    alertPopup.then(function() {
+    console.log('Alert ocorrência adicionanda com sucesso');
+    });
+};
+ 
 // Relogio Jornada
 var tick_relogio = function(){
   $scope.relogio = moment().format("HH : mm : ss"); 
@@ -46,13 +69,15 @@ $scope.getOcorrenciasLocal = function() {
      return localStorage.ocorrencias;
 } 
 
+$scope.ocorrencias_ls = $scope.getOcorrenciasLocal();
+
 
 $scope.insereOcorrenciaLocal = function(desc) { 
 
+      var descricao = desc; 
       var horario =  moment().format("h:mm:ss a");
       var data = moment().format("ddd, D/MMM/YYYY"); 
-      var descricao = desc; 
-      var localizacao ="Hello WOrld";
+      var localizacao = $geolocation.position;
 
       var nova_ocorrencia = { data, horario, descricao, localizacao };
 
@@ -71,7 +96,8 @@ $scope.insereOcorrenciaLocal = function(desc) {
       // armazena conteúdo do vetor em localStorate
       localStorage.setItem('ocorrencias', paraString);
       
-      alert("Inserção Local com sucesso");
+      //alert("Inserção Local com sucesso");
+      showAlert();
 
       return novo;
 }
