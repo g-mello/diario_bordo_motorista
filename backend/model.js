@@ -60,13 +60,14 @@ app.get('/getOcorrencias', function(req, res) {
 app.post('/insereOcorrência', urlencodedParser, function (req, res) {
 	  
 
-     var data = { id_motorista : 1, descricao: req.body.descricao, horario: req.body.horario, localizacao: req.body.localizacao, fg_ativo: 1} ;
+     var dados = { id_motorista : 1, descricao: req.body.descricao, data: req.body.data, horario: req.body.horario, localizacao: req.body.localizacao, fg_ativo: 1} ;
 
-     console.log("id_motorista: " + data.id_motorista);
-     console.log("descricão: " + data.descricao);
-     console.log("horario: " + data.horario);
-     console.log("localizacão: " + data.localizacao);
-     console.log("fg_ativo: " + data.fg_ativo);
+     console.log("id_motorista: " + dados.id_motorista);
+     console.log("descricão: " + dados.descricao);
+     console.log("horario: " + dados.horario);
+     console.log("horario: " + dados.horario);
+     console.log("localizacão: " + dados.localizacao);
+     console.log("fg_ativo: " + dados.fg_ativo);
 
 	  pool.connect(function(err, client, done) {
 
@@ -75,7 +76,7 @@ app.post('/insereOcorrência', urlencodedParser, function (req, res) {
 	  }
 
 	  client.query( "INSERT INTO tb_pedidos values($1, $2, $3, $4, $5)",
-			[ data.id_motorista, data.descricao, data.horario, data.localizacao, data.fg_ativo])
+			[ dados.id_motorista, dados.descricao, dados.horario, dados.localizacao, dados.fg_ativo])
 
 	  done();
 

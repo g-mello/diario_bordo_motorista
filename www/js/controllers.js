@@ -26,6 +26,7 @@ moment.updateLocale('pt-br');
 
 days = ['Domingo', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábabo', 'Domingo'];
 
+/*
 $scope.ano = moment().year();
 $scope.mes = moment().month();
 $scope.dia = moment().date();
@@ -33,6 +34,7 @@ $scope.dia_semana = days[moment().weekday()-1];
 $scope.hora = 3 + moment().hours();
 $scope.minutos = moment().minutes();
 $scope.segundos = moment().seconds();
+*/
 
 // Alerts
 var showAlert = function() {
@@ -60,8 +62,6 @@ $interval(tick_relogio, 1000);
 $scope.ref_inicio = moment().format("ddd, D/MMM/YYYY");
 
 
-
-
 // Local Storage ==============================
 
 $scope.getOcorrenciasLocal = function() {
@@ -69,7 +69,7 @@ $scope.getOcorrenciasLocal = function() {
      return localStorage.ocorrencias;
 } 
 
-$scope.ocorrencias_ls = $scope.getOcorrenciasLocal();
+//$scope.ocorrencias_ls = $scope.getOcorrenciasLocal();
 
 
 $scope.insereOcorrenciaLocal = function(desc) { 
@@ -104,6 +104,28 @@ $scope.insereOcorrenciaLocal = function(desc) {
 
 
 //================================================
+
+// Sincronia
+$scope.sincronizar = function(){
+
+   ocorrencias = $scope.getOcorrenciasLocal();
+   //for( i=0; i < ocorrencias.length; i++){
+       console.log(ocorrencias);
+   //}
+   // $http.post('http://localhost:3000/inserePizza', { "id_pizza": id_pizza }  ) 
+   //     .then(function (response){
+   //         }
+   //     );
+                            
+   // showAlert_ADD();
+};
+
+
+//======================
+
+
+
+
 
 // MODALS =========================================
 // Modal Jornada
